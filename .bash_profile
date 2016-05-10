@@ -33,6 +33,8 @@ setup-docker-compose() {
     export DOCKER_TLS_VERIFY=1
 }
 
+source env.list
+
 # export GEM_HOME="$HOME/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems"
 
 # Should add RVM env to the path.

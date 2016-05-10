@@ -1,0 +1,5 @@
+# Iggnore OSX files.
+.DS_Store
+
+# Ignore environment files
+env.list

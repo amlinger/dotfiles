@@ -1,0 +1,8 @@
+[user]
+	name = Anton Amlinger
+	email = anton.amlinger@gmail.com
+[core]
+	excludesfile = /Users/Amlinger/.gitignore
+	editor = /usr/bin/vim
+[help]
+	autocorrect = 10

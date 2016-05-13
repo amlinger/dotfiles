@@ -15,3 +15,9 @@ syntax enable                    " Use syntax highlighting
 set background=dark
 let g:solarized_termcolors = 256
 colorscheme solarized
+
+" Because it is easier to use spaces instead of tabs as
+" indentation.
+set expandtab
+set shiftwidth=2
+set softtabstop=2

@@ -2,6 +2,14 @@
 # the prompt.
 export BASH_CONF="bash_profile"
 
+case "$OSTYPE" in
+    solaris*) OPERATING_SYSTEM="SOLARIS" ;;
+    darwin*)  OPERATING_SYSTEM="OSX" ;; 
+    linux*)   OPERATING_SYSTEM="LINUX" ;;
+    bsd*)     OPERATING_SYSTEM="BSD" ;;
+    *)        OPERATING_SYSTEM="unknown: $OSTYPE" ;;
+esac
+
 # Getting Node in path
 export PATH=$PATH:~/.node/current/bin:node_modules/.bin
 
@@ -16,26 +24,22 @@ cat() {
     [[ -n $colored ]] && echo "$colored" || echo "$out"
 }
 
-# Setting up Docker environmen variables
-eval "$(docker-machine env dev)"
-
 # Cleaning up docker
 docker-clean() {
     docker rm "$(docker ps -a -q)"
     docker images | grep '<none>' | awk '{print $3}' | xargs docker rmi
 }
 
-# For setting up Docker Compose:
-setup-docker-compose() {
-    boot2docker up
-    export DOCKER_HOST=tcp://192.168.59.103:2376
-    export DOCKER_CERT_PATH=/Users/Amlinger/.boot2docker/certs/boot2docker-vm
-    export DOCKER_TLS_VERIFY=1
-}
+# Add envirnonment varables, if such a file exists.
+if [ -f env.list ]; then
+    source env.list
+fi
 
-source env.list
-
-# export GEM_HOME="$HOME/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems"
+# OSX specific settings.
+if [[ $OPERATING_SYSTEM == "OSX" ]]; then
+    # Speed up cursor movement.
+    defaults write NSGlobalDomain KeyRepeat -int 1
+fi
 
 # Should add RVM env to the path.
 # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

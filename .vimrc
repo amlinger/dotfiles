@@ -1,4 +1,4 @@
-" Necesary for lots of cool vim things, I've been told.
+  " Necesary for lots of cool vim things, I've been told.
 " Among other things, it's useful for running this .vimrc
 " with single vim instances with the same privilages as
 " a global .vimrc
@@ -14,15 +14,23 @@ filetype off
 " Vundle is a plugin manager :BundleInstall can be used
 " to install said plugins.
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
-filetype plugin indent on
-
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 "
 " Bundle list.
 "
-Bundle 'gmarik/vundle'
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Valloric/YouCompleteMe'
+
+" End Bundle bundle definition
+call vundle#end()
+
+filetype plugin indent on
+
+
+ let g:python_host_prog='/usr/bin/python'
 
 "---------------------------------------------------
 "        Editor style settings

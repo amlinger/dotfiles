@@ -17,7 +17,7 @@ export PATH=$PATH:~/.node/current/bin:node_modules/.bin
 export PATH=$PATH":$HOME/bin"
 
 # Getting highlighted cat code.
-cat() {
+color-cat() {
     local out colored
     out=$(/bin/cat $@)
     colored=$(echo $out | pygmentize -f console -g 2>/dev/null)
@@ -41,5 +41,33 @@ if [[ $OPERATING_SYSTEM == "OSX" ]]; then
     defaults write NSGlobalDomain KeyRepeat -int 1
 fi
 
+# Attach a tmux session to every SSH session if there already
+# is one, or creates one otherwise.
+if [[ "$TMUX" == "" ]] &&
+   [[ "$SSH_CONNECTION" != "" ]]; then
+    # Attempt to discover a detached session and attach
+    # it, else create a new session
+    WHOAMI=$(whoami)
+    if tmux has-session -t $WHOAMI 2>/dev/null; then
+        tmux -2 attach-session -t $WHOAMI
+    else
+        tmux -2 new-session -s $WHOAMI
+    fi
+fi
+
+
+
 # Should add RVM env to the path.
 # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+###########
+# ALIASES #
+###########
+
+# Verify that nvim is installed, and use it in that case.
+if hash nvim 2>/dev/null; then
+  alias vim=nvim
+fi
+
+
+

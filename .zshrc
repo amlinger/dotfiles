@@ -84,16 +84,35 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Hide titlebar title text
+DISABLE_AUTO_TITLE="true"
+echo -e "\033]; \007"
+
+# Hide the bloated console preamble
+DEFAULT_USER=Amlinger
+
+# AUTOCOMPLETE SETTINGS
+# To add custom autocomplete scripts, uncomment the following:
+# fpath=(~/.zsh/completion $fpath)
+#
+# Autocomplete initialization
+# autoload -U compinit
+# compinit
+
 # Bound keys
 bindkey -e
 bindkey '[C' forward-word
 bindkey '[D' backward-wordstrokes
 
 # Source startup scripts
-. ~/.bash_login
+. ~/.bash_profile
 
 # added by travis gem
 [ -f /Users/Amlinger/.travis/travis.sh ] && source /Users/Amlinger/.travis/travis.sh
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# tabtab source for yo package
+# uninstall by removing these lines or running `tabtab uninstall yo`
+[[ -f /Users/Amlinger/.node/node-v6.1.0-darwin-x64/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /Users/Amlinger/.node/node-v6.1.0-darwin-x64/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh

@@ -3,3 +3,6 @@
 
 # Ignore environment files
 env.list
+
+# Ignore changes such as authtoken to .npmrc
+.npmrc

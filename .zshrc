@@ -86,7 +86,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Hide titlebar title text
 DISABLE_AUTO_TITLE="true"
-echo -e "\033]; \007"
+echo -en "\033]; \007"
 
 # Hide the bloated console preamble
 DEFAULT_USER=Amlinger

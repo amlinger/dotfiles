@@ -56,17 +56,7 @@ syntax enable
 set list
 set listchars=eol:¬,tab:>-,trail:•,extends:>,precedes:<
 
-" Enable multiple cursors
-" let g:multicursor_insert_maps
-" let g:multicursor_normal_maps
-
 set termguicolors
-
-" Set the colorscheme to solarized, and to use the dark theme. Using 16
-" termcolors is necessary to get the correct coloring. Note that this is only
-" necessary if solarized is the selected colorscheme.
-" let g:solarized_termcolors=16
-" let g:solarized_menu=1
 
 set background=dark
 colorscheme gruvbox

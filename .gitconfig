@@ -3,6 +3,6 @@
 	email = anton.amlinger@gmail.com
 [core]
 	excludesfile = /Users/Amlinger/.gitignore
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/nvim
 [help]
 	autocorrect = 10

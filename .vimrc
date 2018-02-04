@@ -21,12 +21,13 @@ Plugin 'VundleVim/Vundle.vim'
 "
 " Bundle list.
 "
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " Color schemes
-Plugin 'Valloric/YouCompleteMe'
-" Plugin 'amlinger/vim-panda-syntax'
+Plugin 'morhetz/gruvbox'
 
 " End Bundle bundle definition
 call vundle#end()
@@ -59,14 +60,16 @@ set listchars=eol:¬,tab:>-,trail:•,extends:>,precedes:<
 " let g:multicursor_insert_maps
 " let g:multicursor_normal_maps
 
-" Set the colorscheme to solarized, and to use the dark theme. Using 16
-" termcolors is necessary.
-set background=dark
-let g:solarized_termcolors=256
-let g:solarized_menu=1
+set termguicolors
 
-" colorscheme solarized
-" colorscheme panda_syntax
+" Set the colorscheme to solarized, and to use the dark theme. Using 16
+" termcolors is necessary to get the correct coloring. Note that this is only
+" necessary if solarized is the selected colorscheme.
+" let g:solarized_termcolors=16
+" let g:solarized_menu=1
+
+set background=dark
+colorscheme gruvbox
 
 " Because it is easier to use spaces instead of tabs as
 " indentation.
@@ -74,10 +77,37 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
+" Configure Git Gutter
+" Messy configuration for making Git gutter use Gruvbox color scheme.
+hi vertsplit ctermfg=238 ctermbg=235
+hi LineNr ctermfg=237
+hi StatusLine ctermfg=235 ctermbg=245
+hi StatusLineNC ctermfg=235 ctermbg=237
+hi Search ctermbg=58 ctermfg=15
+hi Default ctermfg=1
+hi clear SignColumn
+hi SignColumn ctermbg=235
+hi GitGutterAdd ctermbg=235 ctermfg=245
+hi GitGutterChange ctermbg=235 ctermfg=245
+hi GitGutterDelete ctermbg=235 ctermfg=245
+hi GitGutterChangeDelete ctermbg=235 ctermfg=245
+hi EndOfBuffer ctermfg=237 ctermbg=235
+hi clear SignColumn
+set statusline=%=%P\ %f\ %m
+set fillchars=vert:\ ,stl:\ ,stlnc:\ 
+set laststatus=2
+set noshowmode
+
 "---------------------------------------------------
 "        Editor general settings
 "---------------------------------------------------
 
 " Make vim autoload changed files from disk while in editor.
 set autoread
-"
+
+" Necessary for MacOS clipboard issues in tmux on Sierra:
+" https://stackoverflow.com/questions/39645253/
+set clipboard=unnamed
+
+" Remove trailing whitespaces on save
+autocmd BufWritePre *.py :%s/\s\+$//e
